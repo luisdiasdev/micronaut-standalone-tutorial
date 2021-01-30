@@ -3,12 +3,19 @@
  */
 package com.awesome.micronaut;
 
+import io.micronaut.context.ApplicationContext; 
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        ApplicationContext applicationContext = ApplicationContext.run();
+
+        var dependency = applicationContext.getBean(SomeDependency.class);
+
+        dependency.doStuff();
+
+        dependency.publishEvent();
+
+        dependency.consumeConfiguration();
     }
 }
